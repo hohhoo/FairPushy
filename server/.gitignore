@@ -46,4 +46,5 @@ app.*.map.json
 #added by wangmingyu02
 pubspec.lock
 log/
+file/
 .DS_Store

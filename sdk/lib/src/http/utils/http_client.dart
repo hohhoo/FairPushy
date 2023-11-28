@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:dio/adapter.dart';
+// import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import '../../files/fair_file.dart';
 import '../abstract_parser.dart';
@@ -134,29 +134,34 @@ class HttpClient {
 
   static Dio _initCert() {
     var dio = Dio();
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (client) {
-      client.connectionTimeout = Duration(seconds: 5);
-      client.badCertificateCallback =
-          (X509Certificate cert, String host, int port) {
-        return true; //允许建立链接
-      };
-      //设置代理
-      if (ProjectConfig.instance.URL_PROXY.isNotEmpty) {
-        client.findProxy = (url) {
-          return ProjectConfig.instance.URL_PROXY;
-        };
-      }
-      return client;
-    };
+
+    // dio.options = BaseOptions(
+    //   connectTimeout: Duration(seconds: 5),
+    //
+    // );
+    // (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+    //     (client) {
+    //   client.connectionTimeout = Duration(seconds: 5);
+    //   client.badCertificateCallback =
+    //       (X509Certificate cert, String host, int port) {
+    //     return true; //允许建立链接
+    //   };
+    //   //设置代理
+    //   if (ProjectConfig.instance.URL_PROXY.isNotEmpty) {
+    //     client.findProxy = (url) {
+    //       return ProjectConfig.instance.URL_PROXY;
+    //     };
+    //   }
+    //   return client;
+    // };
     dio.interceptors.addAll(_initInterceptors());
     return dio;
   }
 
   static Options _initOptions() {
     var options = Options();
-    options.sendTimeout = 5000;
-    options.receiveTimeout = 5000;
+    options.sendTimeout = Duration(seconds: 5);
+    options.receiveTimeout = Duration(seconds: 5);
     Map<String, dynamic> header = {};
     options.headers = header;
     return options;
@@ -169,7 +174,7 @@ class HttpClient {
   }
 
   static void formatError(DioError e, FResponse response) {
-    if (e.type == DioErrorType.connectTimeout) {
+    if (e.type == DioErrorType.connectionTimeout) {
       Logger.logi("连接超时");
       response.code = TimeOut;
     } else if (e.type == DioErrorType.sendTimeout) {
@@ -178,7 +183,7 @@ class HttpClient {
     } else if (e.type == DioErrorType.receiveTimeout) {
       Logger.logi("响应超时");
       response.code = TimeOut;
-    } else if (e.type == DioErrorType.response) {
+    } else if (e.type == DioErrorType.badResponse) {
       Logger.logi("出现异常");
       response.code = Failure;
     } else if (e.type == DioErrorType.cancel) {

@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:fair_management_web/base/base_view_model.dart';
 import 'package:fair_management_web/common/api.dart';
+import 'package:fair_management_web/network/fair_dio.dart';
 import 'package:fair_management_web/resmgr/res_mgr_view_model.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -28,15 +29,16 @@ class SubResPubViewModel extends BaseViewModel {
   void uploadPatchFile(String fileName, fileBytes) async {
     var params = Map<String, dynamic>();
     params["op"] = "upload";
-    params["filecontent"] =
+    params["fileContent"] =
         MultipartFile.fromBytes(fileBytes, filename: fileName);
+    params["fileName"] = fileName;
     FormData formData = FormData.fromMap(params);
-    Response? result = await api.uploadPathFile(fileName, formData);
+    Response? result = await api.uploadPathFile(formData);
     var resultData = result?.data;
     if (resultData != null) {
-      Map<String, dynamic> map = json.decode(resultData);
+      Map<String, dynamic> map = resultData;
       var dataDic = map['data'];
-      patchFileUrl = dataDic['url'];
+      patchFileUrl = "${FairDio.baseUrl}web/getFile?fileName=${dataDic['file']}";
     } else {
       uploadFileTip = '文件上传失败';
     }

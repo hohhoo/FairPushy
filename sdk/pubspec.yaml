@@ -13,7 +13,7 @@ dependencies:
   path_provider: ^2.0.4   #文件路径相关
   archive: ^3.3.0  #压缩，解压缩相关
   permission_handler: 6.0.1
-  dio: ^4.0.6
+  dio: ^5.2.0+1
   shared_preferences: ^2.0.15
   #摇一摇重力感应
   sensors_plus: ^1.4.1

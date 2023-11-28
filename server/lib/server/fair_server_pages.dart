@@ -1,3 +1,4 @@
+import 'package:HotUpdateService/pages/patch/view/path_download.dart';
 import 'package:HotUpdateService/server/src/get_server.dart';
 import 'package:HotUpdateService/server/fair_server_routes.dart';
 import 'package:HotUpdateService/pages/project/view/project_create_page.dart';
@@ -10,6 +11,8 @@ import 'package:HotUpdateService/pages/patch/view/patch_query_page.dart';
 import 'package:HotUpdateService/pages/compile/view/check_build_status_page.dart';
 import 'package:HotUpdateService/pages/compile/view/online_build_page.dart';
 import 'package:HotUpdateService/pages/record/view/record_query_page.dart';
+
+import '../pages/patch/view/path_update_file.dart';
 
 /*
 * 接口路由配置，Server端提供的所有接口需在routes中配置相关参数
@@ -81,6 +84,19 @@ mixin AppPages {
       page: () => CreatePatchAndBuildPage(),
       method: Method.post,
       needAuth: false,
-    )
+    ),
+    GetPage(
+      name: Routes.UPLOAD_FILE, //创建模块补丁并在线构建
+      page: () => UploadFilePage(),
+      method: Method.post,
+      needAuth: false,
+    ),
+    GetPage(
+      name: Routes.GET_FILE, //创建模块补丁并在线构建
+      page: () => DownloadFilePage(),
+      method: Method.get,
+      needAuth: false,
+    ),
+
   ];
 }

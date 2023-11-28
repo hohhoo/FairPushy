@@ -54,11 +54,11 @@ class Api {
   }
 
   ///上传补丁文件
-  Future<dynamic> uploadPathFile(String fileName, formData) async {
+  Future<dynamic> uploadPathFile(formData) async {
     return await FairDio.instance.uploadFile(
-        '/kLRHgFeDkLkL/dynamics/' + fileName,
+        '/web/uploadFile/',
         data: formData,
-        baseUrl: FairDio.uploadBaseUrl);
+        baseUrl: FairDio.baseUrl);
   }
 
   ///创建项目

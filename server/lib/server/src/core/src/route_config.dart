@@ -23,6 +23,7 @@ class RouteConfig {
   }
 
   Route? findRoute(HttpRequest req) {
+    print(req.uri.path);
     final route = _pages.firstWhereOrNull(
       (route) => RouteParser.match(
         req.uri.path,

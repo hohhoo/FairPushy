@@ -307,7 +307,7 @@ class _SubResMgrPageState extends State<SubResMgrPage> {
   TextEditingController controllerGitUrl = TextEditingController();
   TextEditingController controllerBranch = TextEditingController();
   TextEditingController controllerFluVer = TextEditingController();
-  bool isOnlineBuild = true;
+  bool isOnlineBuild = false;
 
   /**
    * 编辑弹窗Dialog
@@ -320,7 +320,7 @@ class _SubResMgrPageState extends State<SubResMgrPage> {
     controllerGitUrl = TextEditingController();
     controllerBranch = TextEditingController();
     controllerFluVer = TextEditingController();
-    isOnlineBuild = true;
+    isOnlineBuild = false;
     pubViewModel?.clearData();
 
     return showDialog<void>(

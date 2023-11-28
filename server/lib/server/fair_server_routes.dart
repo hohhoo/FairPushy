@@ -20,4 +20,9 @@ class Routes {
   static const ONLINE_BUILD = '/web/onlineBuild'; //打包平台-在线构建
   static const CHECK_BUILD_STATUS = '/web/checkBuildStatus'; //打包平台-检查构建状态
   static const CREATE_APP_PATCH_AND_BUILD ="/web/create_patch_and_build"; //创建模块补丁并在线构建
+
+  /// 上传接口
+  static const UPLOAD_FILE = '/web/uploadFile';
+  /// 下载接口
+  static const GET_FILE = '/web/getFile';
 }

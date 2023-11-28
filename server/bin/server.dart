@@ -17,10 +17,13 @@ void main() async {
   /// Initialise the db pool
   DbPool.fromSettings(pathToSettings: 'settings.yaml');
 
+
+
+
   runApp(
     GetServer(
       getPages: AppPages.routes,
-      port: 8080,
+      port: 8086,
     ),
   );
   print("FairServer ready...");

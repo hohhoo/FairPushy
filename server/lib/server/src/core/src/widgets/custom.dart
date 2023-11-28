@@ -421,6 +421,26 @@ class Success extends StatelessWidget {
   }
 }
 
+class SuccessDownloadFile extends StatelessWidget {
+  final dynamic data;
+
+  const SuccessDownloadFile({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    try {
+      context.response!.sendFile(data);
+    } catch (err) {
+      context.response!.sendFile(data);
+    }
+    return WidgetEmpty();
+  }
+}
+
+
 class Error extends StatelessWidget {
   final String error;
 

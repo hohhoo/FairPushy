@@ -229,9 +229,10 @@ class RouteParser {
   }
 
   static bool match(String uriPath, String method, Method _method, Map path) {
+    bool isMatch = path['regexp'].hasMatch(uriPath);
+
     return ((enumValueToString(_method) == method.toLowerCase() ||
             _method == Method.dynamic ||
-            _method == Method.ws) &&
-        path['regexp'].hasMatch(uriPath));
+            _method == Method.ws) && isMatch);
   }
 }
