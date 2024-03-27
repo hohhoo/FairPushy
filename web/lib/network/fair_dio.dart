@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'base_result.dart';
 
 class FairDio {
-  static const String baseUrl = 'http://101.35.48.210:2023/api/'; //云端
-  // static const String baseUrl = 'http://127.0.0.1:8086/'; //测试地址址
+  static const String baseUrl = 'http://127.0.0.1:8086/'; //测试地址址
 
   static const String baseUrlTo58 = ''; //测试环境
 
